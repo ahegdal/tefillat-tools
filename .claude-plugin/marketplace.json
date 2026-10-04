@@ -1,0 +1,15 @@
+{
+  "name": "tefillat-tools",
+  "description": "Outils Claude Code pour préparer des pièces liturgiques hébraïques à projeter en synagogue",
+  "owner": {
+    "name": "ahegdal",
+    "url": "https://github.com/ahegdal"
+  },
+  "plugins": [
+    {
+      "name": "tefillat-tools",
+      "source": "./plugins/tefillat-tools",
+      "description": "Translittération séfarade, traduction, découpage d'alignement et fichier d'import d'une pièce liturgique"
+    }
+  ]
+}
