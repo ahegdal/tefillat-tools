@@ -37,6 +37,9 @@ NIQQUD = re.compile(r'[ְ-ׇֻ]')          # une voyelle (hors daguesh)
 MAQAF = '־'
 PONCT = re.compile(r'^[!?;:,.…«»"\'\-—–׃]+$')        # un signe isolé n'est pas un mot
 
+RANGS = ('cité', 'attesté', 'reconstitué')
+SENS = ('concordant', 'nuance', 'désaccord', 'non contrôlé')
+
 RAPPORT_HAUT = 3.0          # au-delà : les 1,3 % extrêmes du corpus mesuré
 RAPPORT_BAS = 1 / 3.0       # en deçà : les 0,2 % extrêmes
 
@@ -150,6 +153,10 @@ def signalements(d):
                              "translittération — frontière à vérifier (signal, pas verdict)"
                              % (n, k, q))
 
+        # La provenance d'un hébreu reconstitué (mode « reconstituer »). L'import ne
+        # la lit pas : ses défauts se signalent, ils ne refusent jamais.
+        s += signalements_provenance(n, l, he, tr)
+
         # Invariants absolus de la norme (§1, §4) — sur la translittération seule.
         if re.search(r'c', tr, re.I):
             s.append("ligne %d : lettre « c » dans la translittération (§1.1)" % n)
@@ -158,6 +165,39 @@ def signalements(d):
         if re.search(r'[‘’ʼʻ“”]', tr):
             s.append("ligne %d : apostrophe ou guillemet typographique — aleph = ' et "
                      "ayin = \" en ASCII (§4)" % n)
+    return s
+
+
+def signalements_provenance(n, l, he, tr):
+    """S9 et S10 de la liste de contrôle : la provenance d'une ligne."""
+    p = l.get('provenance')
+    if p is None:
+        return []
+    if not isinstance(p, dict):
+        return ["ligne %d : « provenance » doit être un objet { … }" % n]
+    s = []
+    rang, sens = p.get('rang'), p.get('sens')
+    if rang not in RANGS:
+        s.append("ligne %d : rang de provenance inconnu %r (cité, attesté ou reconstitué)" % (n, rang))
+    if rang in ('cité', 'attesté') and not (p.get('reference') and p.get('url')):
+        s.append("ligne %d : %s sans référence ni adresse ouvrable — c'est alors du reconstitué"
+                 % (n, rang))
+    if sens not in SENS:
+        s.append("ligne %d : verdict de sens inconnu %r" % (n, sens))
+    elif sens == 'désaccord':
+        s.append("ligne %d : DÉSACCORD DE SENS entre l'hébreu proposé et la traduction fournie" % n)
+    elif sens == 'non contrôlé' and rang == 'reconstitué':
+        s.append("ligne %d : hébreu reconstitué, sens non contrôlé (aucune traduction fournie)" % n)
+    if not isinstance((p.get('standard') or {}).get('retenu'), str):
+        s.append("ligne %d : standard d'entrée non déclaré dans la provenance" % n)
+    if p.get('translit_entree') and HEBREU.search(he) and tr.strip():
+        import os
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import aller_retour
+        c = aller_retour.comparer(p['translit_entree'], tr, he)
+        for x in c['inexpliques']:
+            s.append("ligne %d : aller-retour INEXPLIQUÉ — %s : cette ligne ne doit pas être proposée"
+                     % (n, x))
     return s
 
 

@@ -1,0 +1,102 @@
+{
+  "structure": "table",
+  "format": "htf",
+  "titre_he": "דּוֹר הֹלֵךְ",
+  "titre_translit": "Dor holékh",
+  "titre_fr": "Une génération s'en va",
+  "source": "Qohélet 1:4-5",
+  "slug_propose": "dor-holekh",
+  "lignes": [
+    {
+      "genre": "liturgie",
+      "hebreu": "דּוֹר הֹלֵךְ וְדוֹר בָּא וְהָאָרֶץ לְעוֹלָם עֹמָדֶת",
+      "texte": null,
+      "segments": [
+        [
+          "Dor holékh",
+          "Une génération s'en va,"
+        ],
+        [
+          "vedor ba'",
+          "une génération vient,"
+        ],
+        [
+          "veha'arets le\"olam \"omadet",
+          "et la terre demeure à jamais."
+        ]
+      ],
+      "provenance": {
+        "rang": "cité",
+        "reference": "Qohélet 1:4",
+        "url": "https://www.sefaria.org/Ecclesiastes.1.4?ven=Tanach_with_Nikkud&lang=he",
+        "standard": {
+          "retenu": "français (ch, tz, '' pour l'ayin)",
+          "declare": false,
+          "indices": [
+            "ch",
+            "tz",
+            "''"
+          ]
+        },
+        "translit_entree": "Dor holech vedor ba vehaaretz le''olam ''omadet",
+        "ambiguites": [],
+        "sens": "concordant"
+      }
+    },
+    {
+      "genre": "liturgie",
+      "hebreu": "וְזָרַח הַשֶּׁמֶשׁ וּבָא הַשָּׁמֶשׁ וְאֶל־מְקוֹמוֹ שׁוֹאֵף זוֹרֵחַ הוּא שָׁם",
+      "texte": null,
+      "segments": [
+        [
+          "Vezaraḥ hashshemesh",
+          "Le soleil se lève,"
+        ],
+        [
+          "ouva' hashshamesh",
+          "et le soleil se couche ;"
+        ],
+        [
+          "ve'el meqomo sho'éf",
+          "il aspire vers son lieu,"
+        ],
+        [
+          "zoréaḥ hou' sham",
+          "là où il se lève."
+        ]
+      ],
+      "provenance": {
+        "rang": "reconstitué",
+        "reference": null,
+        "url": null,
+        "standard": {
+          "retenu": "français (ch, tz, '' pour l'ayin)",
+          "declare": false,
+          "indices": [
+            "ch"
+          ]
+        },
+        "translit_entree": "Vezarach hachemech ouva hachamech veel mekomo choef zoreach hou cham",
+        "ambiguites": [
+          {
+            "mot": "hachemech",
+            "choix": "ch initial et final : ש retenu (« le soleil »), ח ou כ possibles",
+            "candidats": [
+              "הַשֶּׁמֶשׁ"
+            ]
+          },
+          {
+            "mot": "mekomo",
+            "choix": "o : holam plein retenu",
+            "candidats": [
+              "מְקוֹמוֹ",
+              "מְקֹמוֹ"
+            ]
+          }
+        ],
+        "sens": "concordant",
+        "note": "exemple d'un environnement sans réseau : même un verset connu y reste « reconstitué »"
+      }
+    }
+  ]
+}

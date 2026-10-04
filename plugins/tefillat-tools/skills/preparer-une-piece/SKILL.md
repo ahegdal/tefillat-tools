@@ -11,8 +11,12 @@ description: >-
   prière », « faire un fichier d'import », ou quand quelqu'un colle de l'hébreu
   ou une translittération en demandant d'en faire une pièce — même sans nommer
   ce skill : « translittère ce psaume », « fais-moi le fichier pour ce chant »,
-  « découpe cette berakha » suffisent. Ne sert pas à relire une pièce déjà
-  chargée dans une base, et n'écrit jamais dans une base.
+  « découpe cette berakha » suffisent. Sert aussi à **reconstituer l'hébreu**
+  d'une translittération — dans n'importe quel standard (`ch`, `tz`, `'h`…),
+  avec ou sans traduction — et à la **retranslittérer selon la norme** :
+  « retrouve l'hébreu de ce chant », « remets cette translittération dans la
+  norme ». Ne sert pas à relire une pièce déjà chargée dans une base, et
+  n'écrit jamais dans une base.
 ---
 
 # Préparer une pièce : de l'hébreu au fichier d'import
@@ -26,8 +30,10 @@ de style : ce sont eux qu'on partage, plus encore que la norme.
    français que l'on t'a donnés. Une forme douteuse se **signale** dans le
    rapport, elle ne se réécrit pas. *Y compris quand tu découpes* : le
    découpage recopie le texte à l'identique, même fautif.
-2. **Jamais deviner une voyelle.** Un hébreu sans voyelles ne se translittère
-   pas (§1). Une translittération ne redonne pas l'hébreu (§1).
+2. **Jamais deviner sans le dire.** Un hébreu sans voyelles ne se translittère
+   pas (§1). Un hébreu tiré d'une translittération est **cité** si tu as
+   ouvert sa source, **reconstitué** sinon — et une reconstitution porte ses
+   choix ambigus, mot par mot (§10). **Hors réseau, rien n'est cité.**
 3. **Le rapport distingue le mesuré du supposé.** Ce que tu as compté — les
    atomes, les mots, le recollage, les longueurs — est marqué *mesuré* ; ta
    translittération, ta traduction et tes frontières sont des *propositions*.
@@ -49,7 +55,8 @@ Demande-le, ou regarde, **avant** de commencer. La réponse change le travail.
 |---|---|---|
 | **Hébreu vocalisé** | translittérer selon la norme, proposer une traduction, découper | — |
 | **Hébreu non vocalisé** | **t'arrêter et le dire** : la vocalisation décide de la translittération | deviner les voyelles |
-| **Translittération seule** | proposer une traduction et un découpage | **rendre l'hébreu** — `'` et `"` recouvrent plusieurs lettres, les voyelles sont perdues : l'opération n'est pas réversible |
+| **Translittération seule** | proposer une traduction et un découpage ; **à la demande, reconstituer l'hébreu** (§10) | rendre l'hébreu **sans le marquer** : la translittération perd la graphie — plein ou défectif, qamats ou patah, gémination —, donc toute reconstitution porte son rang et ses ambiguïtés |
+| **Translittération + traduction** | le mode « reconstituer » **avec contrôle de sens** (§10.6) — **le meilleur cas pour reconstituer** | — |
 | **Les deux** | vérifier l'un par l'autre (§4, règle 1) — **c'est le cas le plus sûr** | — |
 
 Un hébreu « vocalisé » porte ses voyelles (`ַ ָ ֵ ֶ ִ ֹ ֻ ְ`). Des lettres seules
@@ -149,14 +156,16 @@ Un objet JSON, une pièce par fichier :
 | `rendu` (facultatif, pièce ou ligne) | `multi` · `mono` · absent |
 | `apres` (facultatif — **voir §7**) | le slug de la pièce qui précède |
 | `slug_propose` | le titre translittéré en minuscules, sans accents ni signes, mots joints par `-` |
+| `provenance` (par ligne — **mode « reconstituer »**, §10.7) | d'où vient l'hébreu : rang, standard d'entrée, référence, ambiguïtés, verdict de sens |
 
 **La sortie est du texte.** Si tu peux écrire un fichier, écris-le. Sinon —
 et c'est le cas dans bien des environnements —, **rends le JSON entier dans ta
 réponse**, dans un bloc de code, prêt à être copié dans un fichier `.json`. Ne
 suppose jamais que tu peux écrire sur un disque.
 
-Deux exemples sont joints : `exemples/piece-exemple.json` (bien formé) et
-`exemples/piece-cassee.json` (fautif, pour voir le contrôle parler).
+Trois exemples sont joints : `exemples/piece-exemple.json` (bien formé),
+`exemples/piece-cassee.json` (fautif, pour voir le contrôle parler) et
+`exemples/piece-reconstituee.json` (mode « reconstituer », avec `provenance`).
 
 ## 6. La liste de contrôle — le verdict
 
@@ -192,6 +201,8 @@ doivent concorder** ; s'ils divergent, dis-le.
 | S6 | **recollage** : aucun segment bordé d'espaces, aucune espace double dans un segment |
 | S7 | **rapport de longueur** : pour chaque segment plein des deux côtés, français ÷ translittération entre 0,33 et 3,0 |
 | S8 | **invariants absolus** de la translittération : pas de `c` (§1.1), pas de `è` (§1.4), pas d'apostrophe ni de guillemet typographique `’ ʼ ʻ “ ”` (§4) |
+| S9 | **provenance** (si présente) : rang `cité`, `attesté` ou `reconstitué` ; un `cité`/`attesté` a sa référence **et** son adresse ; le standard d'entrée est déclaré ; le sens vaut `concordant`, `nuance`, `désaccord` ou `non contrôlé` — **un désaccord, ou un reconstitué non contrôlé, se signale** |
+| S10 | **aller-retour** (si la provenance porte la translittération d'entrée) : chaque mot d'entrée a le même squelette consonantique que le mot de retour — sinon **INEXPLIQUÉ**, et la ligne ne devait pas être proposée |
 
 **Verdict** : un seul refus → **REFUSÉ**. Aucun refus mais des signalements →
 **IMPORTABLE, à relire** (le script sort 2). Ni l'un ni l'autre →
@@ -254,7 +265,131 @@ Dans cet ordre :
 ## 9. Ce que ce skill ne fait pas
 
 Il ne charge rien dans une base · il **n'invente jamais un slug de rang** · il
-ne reconstitue pas l'hébreu depuis la translittération · il ne vocalise pas un
-hébreu nu · il ne produit pas de présentation · il ne connaît ni les sections,
-ni les rangs, ni les offices d'une communauté · **il ne corrige jamais le texte
-sacré, il le signale** · il ne sert pas à relire une pièce déjà chargée.
+ne présente jamais un hébreu reconstitué comme cité · il ne reconstitue pas les
+paroles d'une œuvre protégée · il ne vocalise pas un hébreu nu · il ne produit
+pas de présentation · il ne connaît ni les sections, ni les rangs, ni les
+offices d'une communauté · **il ne corrige jamais le texte sacré, il le
+signale** · il ne sert pas à relire une pièce déjà chargée.
+
+## 10. Le mode « reconstituer » — de la translittération à l'hébreu
+
+**À utiliser quand on te donne une translittération et qu'on te demande
+l'hébreu**, ou une translittération à remettre dans la norme. La traduction
+française est facultative ; **avec elle, le contrôle de sens devient
+possible**, et c'est le meilleur cas.
+
+### 10.1 Ce que tu refuses, avant tout
+
+Tu t'arrêtes, tu nommes la raison, et tu ne proposes rien :
+
+- **une œuvre protégée** — paroles d'un auteur identifiable et récent :
+  écrire en hébreu les paroles d'une chanson, c'est les reproduire ;
+- **une entrée déjà en hébreu** : il n'y a rien à reconstituer (§1).
+
+### 10.2 Le standard d'entrée — déclaré, à défaut détecté, et toujours dit
+
+Le même `ch` est un ḥet chez l'un, un khaf chez l'autre, un shin chez un
+troisième. **Tout dépend du standard**, donc :
+
+1. **Si l'utilisateur le déclare** — « c'est la norme », « c'est de
+   l'ashkénaze », « je ne sais pas » —, sa déclaration gagne.
+2. **Sinon tu le détectes** par indices (`ch`, `tz`, `''`, un circonflexe,
+   `'h`, « Hashem ») et **tu annonces ce que tu as retenu, avec les indices**.
+3. **Dans le doute, tu demandes.** Sans réponse, tu traites toutes les
+   lectures possibles comme ambiguës (§10.5).
+
+Le standard retenu s'écrit **dans le rapport et dans la `provenance`**.
+
+### 10.3 La chaîne : on passe par l'hébreu
+
+```
+translittération d'entrée  →  hébreu (cité | attesté | reconstitué)  →  translittération selon la norme
+```
+
+On ne convertit **jamais** une translittération en une autre par
+substitution : `ch` ne devient `ḥ` que si la lettre est un ח. **La
+translittération de sortie hérite du rang de l'hébreu dont elle vient** :
+sûre sur une ligne citée, **proposition appuyée sur une proposition** sur
+une ligne reconstituée. Dis-le, ligne par ligne.
+
+### 10.4 Les trois rangs — et celui qui gouverne
+
+| Rang | Ce que c'est | Ce qu'il exige |
+|---|---|---|
+| **cité** | un verset biblique | la référence (livre, chapitre, verset), une **adresse qu'un tiers peut ouvrir**, et le texte **repris de cette source, pas récité** |
+| **attesté** | un texte liturgique connu (siddour, piyyout) | la source nommée, son édition, son adresse |
+| **reconstitué** | tout le reste | les ambiguïtés (§10.5), l'aller-retour (§10.6) |
+
+- **Repris, pas récité.** Si tu peux ouvrir la source (un site de textes
+  bibliques), copie le texte **depuis elle**. Sinon, **demande à
+  l'utilisateur** de coller le verset de son édition. **Hors réseau et sans
+  texte fourni, aucune ligne n'est citée** : elle est reconstituée, quelle
+  que soit ta certitude. Un verset récité de mémoire peut être faux sur une
+  seule voyelle.
+- **Le rang le plus faible gouverne la ligne.** Une ligne qui reprend trois
+  mots d'un verset en omettant le quatrième **n'est pas le verset** : elle est
+  reconstituée, le verset devient un indice.
+
+### 10.5 Les ambiguïtés, mot par mot
+
+`conventions.json` (joint) dit, pour chaque forme d'entrée, les lettres
+possibles — `ch` : ח, כ ou ש ; `h` : ה ou ח ; `'` : א, et ע si la source
+confond. S'y ajoutent **quatre ambiguïtés qui demeurent même en norme
+parfaite** : **plein ou défectif**, **qamats ou patah**, **gémination**,
+**`ḥ` de la source pour ח ou כ**.
+
+Pour chaque ligne reconstituée, liste les choix : *le mot, ce que tu as
+retenu, les autres candidats.* C'est la moitié du travail : on tranche en
+regardant une liste au lieu de relire tout l'hébreu.
+
+### 10.6 L'aller-retour et le contrôle de sens
+
+**L'aller-retour, toujours.** Retranslittère ton hébreu selon la norme et
+compare **mot à mot** à l'entrée. Chaque écart doit s'expliquer par une
+famille — convention étrangère, aleph initial, h/ḥ/kh, gémination, voyelle,
+casse. **Un mot inexpliqué** (les consonnes dures diffèrent) veut dire que
+ton hébreu ne rend pas l'entrée : **la ligne est signalée et tu ne proposes
+pas son hébreu.** Là où du code s'exécute : `python3 aller_retour.py
+ma-piece.json`.
+
+**Le contrôle de sens, si une traduction est fournie.**
+
+1. Traduis **ton propre hébreu**, sans relire la traduction fournie.
+2. Compare. Trois verdicts par ligne : **concordant** · **nuance** ·
+   **désaccord**.
+3. **Un désaccord se met en tête du rapport** : un hébreu qui ne dit pas ce
+   que dit la traduction connue est probablement faux. La ligne reste
+   proposée, avec sa marque — l'information est trop utile pour être tue.
+4. **Sans traduction fournie**, chaque ligne porte **« sens non contrôlé »**.
+   Une ligne non contrôlée n'est pas une ligne validée.
+
+Les segments portent la translittération **de sortie** et le français
+**fourni**, recopié sans changer un mot ; à défaut, ta traduction, marquée
+comme proposition.
+
+### 10.7 La provenance, dans le fichier
+
+Chaque ligne reconstituée ou citée porte :
+
+```json
+"provenance": {
+  "rang": "cité | attesté | reconstitué",
+  "reference": "Qohélet 1:4", "url": "<adresse de la source ouverte>",
+  "standard": { "retenu": "français (ch, tz)", "declare": false, "indices": ["ch", "tz"] },
+  "translit_entree": "la translittération telle qu'on te l'a donnée",
+  "ambiguites": [ { "mot": "…", "choix": "…", "candidats": ["…"] } ],
+  "sens": "concordant | nuance | désaccord | non contrôlé"
+}
+```
+
+**Limite à dire à l'utilisateur** : la chaîne d'import accepte cette clé mais
+**ne la charge pas** — la provenance ne survit pas à l'import. **Le rapport
+doit accompagner le fichier** jusqu'à la personne qui importe, et tout ce
+qui est importé arrive de toute façon en quarantaine (§7).
+
+### 10.8 Le rapport du mode « reconstituer »
+
+En plus du §8, et **en tête** : le standard retenu et ses indices ; **les
+désaccords de sens** ; les lignes non proposées (aller-retour inexpliqué).
+Puis, pour chaque ligne : rang et référence · hébreu · translittération
+d'entrée → de retour, écarts et familles · ambiguïtés · verdict de sens.

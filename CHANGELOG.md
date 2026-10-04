@@ -4,6 +4,19 @@ Chaque version nomme l'empreinte `sha256` de la norme de translittération
 qu'elle porte. **Une norme modifiée exige une nouvelle version** : sans
 changement de numéro, Claude Code ne livre pas la mise à jour.
 
+## 1.2.0 — 2026-10-04
+
+norme: 9586359a8904538e7d9e0fe55440e9f5b140730c12643237b23102067255ba53
+
+- Mode « reconstituer » : d'une translittération — dans n'importe quel
+  standard (`ch`, `tz`, `''`, circonflexe) — et d'une traduction facultative,
+  le skill propose l'hébreu, avec son rang (cité, attesté, reconstitué), ses
+  ambiguïtés mot par mot, l'aller-retour et le contrôle de sens, puis
+  retranslittère selon la norme. **Hors réseau, rien n'est cité.**
+- `aller_retour.py` et `conventions.json` rejoignent le paquet ; un troisième
+  exemple montre un fichier avec `provenance`.
+- La norme ne change pas.
+
 ## 1.1.0 — 2026-10-04
 
 norme: 9586359a8904538e7d9e0fe55440e9f5b140730c12643237b23102067255ba53

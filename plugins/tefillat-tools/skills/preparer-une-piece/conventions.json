@@ -1,0 +1,28 @@
+{
+  "objet": "Ce qu'une forme de translittération d'entrée peut cacher comme lettre hébraïque. Donnée, pas code : le mode « reconstituer » la lit pour lister les ambiguïtés, l'aller-retour pour normaliser une convention étrangère.",
+  "mesure": "Corpus liturgique réel, 2026-10-04 : 11 224 lignes portant hébreu et translittération ; mots alignés atome à atome.",
+  "formes": [
+    {"forme": "ch", "lettres": ["ח", "כ", "ך", "ש"], "ambigu": true,
+     "note": "chez l'un ḥ (ח), chez l'autre kh (כ), et en translittération à la française sh (ש) — mesuré : 26 mots ח, 12 כ/ך, 22 ש sur 53"},
+    {"forme": "kh", "lettres": ["כ", "ך"], "ambigu": false, "note": "khaf spirant (§2)"},
+    {"forme": "ḥ", "lettres": ["ח"], "ambigu": false, "note": "ḥet (§2) — mais une source relâchée l'écrit aussi pour un khaf"},
+    {"forme": "'h", "lettres": ["ח"], "ambigu": false, "note": "ḥet, convention française (Machia'h)"},
+    {"forme": "h", "lettres": ["ה", "ח"], "ambigu": true,
+     "note": "hé en norme ; une source relâchée l'écrit pour un ḥet — mesuré à l'initiale : 4 085 ה, 16 ח"},
+    {"forme": "tz", "lettres": ["צ", "ץ"], "ambigu": false, "note": "la norme écrit ts (§2)"},
+    {"forme": "ts", "lettres": ["צ", "ץ"], "ambigu": false, "note": "tsadé (§2)"},
+    {"forme": "'", "lettres": ["א", "ע"], "ambigu": "selon le standard",
+     "note": "aleph en norme (§4) ; une source qui confond note aussi l'ayin ainsi — mesuré à l'initiale : 785 א, 27 ע"},
+    {"forme": "\"", "lettres": ["ע"], "ambigu": false, "note": "ayin (§4)"},
+    {"forme": "''", "lettres": ["ע"], "ambigu": false, "note": "ayin noté par deux apostrophes ; la norme écrit \""},
+    {"forme": "î ô â ê û", "lettres": [], "ambigu": false, "note": "un accent circonflexe marque une voyelle, jamais une lettre"},
+    {"forme": "Hashem", "lettres": ["ה", "ש", "ם"], "ambigu": false,
+     "note": "« le Nom » — substitut parlé ; le texte peut porter הַשֵּׁם ou le Tétragramme : à demander"}
+  ],
+  "ambiguites_residuelles": [
+    {"nom": "plein ou défectif", "exemple": "holam וֹ ou ֹ ; qubbuts ֻ ou shuruk וּ", "pourquoi": "la translittération rend le son, pas la graphie"},
+    {"nom": "qamats ou patah", "exemple": "ָ ou ַ", "pourquoi": "même son en lecture séfarade"},
+    {"nom": "gémination", "exemple": "daguesh fort ou non", "pourquoi": "un daguesh fort ne s'entend pas toujours (§7.1)"},
+    {"nom": "ḥ de la source pour ח ou כ", "exemple": "\"aleiḥèm pour עֲלֵיכֶם", "pourquoi": "la translittération de départ n'est pas écrite selon la norme"}
+  ]
+}
