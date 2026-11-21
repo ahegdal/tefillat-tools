@@ -73,8 +73,8 @@ réservé au Nom divin préfixé (§7.3) ; le maqaf rendu par une espace (§7.4)
 
 | | |
 |---|---|
-| Version copiée | version du 2026-10-04, 312 lignes, §1 à §13 |
-| Empreinte | `sha256 9586359a8904538e7d9e0fe55440e9f5b140730c12643237b23102067255ba53` |
+| Version copiée | version du 2026-11-20, 337 lignes, §1 à §13 |
+| Empreinte | `sha256 56dcdc12bfa39fbcab715a9e19400cc46411695a58c2e2d32125c5ff9de780d1` |
 | Copie | à l'octet près — **ne la modifie pas** : elle est comparée à l'original |
 
 > **§13 — l'implémentation de référence n'est pas livrée avec ce skill.** Le

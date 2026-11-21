@@ -4,6 +4,17 @@ Chaque version nomme l'empreinte `sha256` de la norme de translittération
 qu'elle porte. **Une norme modifiée exige une nouvelle version** : sans
 changement de numéro, Claude Code ne livre pas la mise à jour.
 
+## 1.3.0 — 2026-11-20
+
+norme: 56dcdc12bfa39fbcab715a9e19400cc46411695a58c2e2d32125c5ff9de780d1
+
+- Quatre règles arbitrées, pour des fautes relevées dans les lectures : après un
+  préfixe à sheva, le yod à holam s'écrit `yo` (`beyom`, et non `béyvom`) ;
+  ce qui se lit autrement qu'il ne s'écrit se translittère comme il se lit
+  (`הִוא` → `hi'`, `יִשָּׂשכָר` → `Yissakhar`, nouveau §5.1) ; `קָרְאָה` → `qar'a` ;
+  un shuruk après un yod reste `ou` (`הָיוּ` → `hayou`, et non `haiv`).
+- Le §13 nomme ces deux catégories parmi ce que l'ébauche mécanique sort faux.
+
 ## 1.2.0 — 2026-10-04
 
 norme: 9586359a8904538e7d9e0fe55440e9f5b140730c12643237b23102067255ba53

@@ -108,6 +108,7 @@ Quelle que soit la voyelle, quelle que soit la position.
 רִאשׁוֹנִים  → ri'shonim     (et non « rishonim »)
 רֹאשׁ       → ro'sh
 וַיִּקְרָא    → Vayyiqra'
+קָרְאָה      → qar'a        (et non « qara »)
 מוֹאָב      → Mo'av
 כַּאֲשֶׁר     → ka'asher
 ```
@@ -120,6 +121,10 @@ Quelle que soit la voyelle, quelle que soit la position.
 - `וֹ` holam malé → `o` ; `וּ` shuruk → `ou` — mais seulement quand le vav ne
   porte pas d'autre voyelle et ne suit pas une voyelle.
 - Consonantique partout ailleurs → `v`.
+- **Un shuruk après un yod reste `ou`**, et le yod est consonne : `הָיוּ`→`hayou`,
+  `וְהָיוּ`→`vehayou` (et non `haiv`, `vehaiv`). À ne pas confondre avec le suffixe
+  `־ָיו`, où le vav ne porte rien et s'écrit bien `aiv` : `דְּרָכָיו`→`derakhaiv`.
+  *Arbitré le 2026-11-20.*
 
 **Yod**
 - Consonantique (début de syllabe) → `y` : `יוֹם`→`yom`.
@@ -134,6 +139,22 @@ Quelle que soit la voyelle, quelle que soit la position.
 ```
 - patah/qamats + yod → `ai` : `יָדַי`→`yadai`.
 - `יו` → `yo` ; `יי` → `yy`.
+- **Après un préfixe à sheva, le yod reste consonne et le vav reste holam** : le
+  sheva s'écrit `e`, jamais `éy`, et aucun `v` ne s'ajoute. `בְּיוֹם`→`beyom`,
+  `כְּיוֹם`→`keyom`, `וְיוֹכִיחוּ`→`veyokhiḥou`, `הֱיוֹת`→`heyot` (et non `béyvom`,
+  `kéyvom`, `véyvokhiḥou`, `héyvot`). *Arbitré le 2026-11-20.*
+
+### 5.1 Ce qui se lit autrement qu'il ne s'écrit
+
+On translittère **ce qui se lit**, pas les lettres — comme pour le Nom divin (§8).
+
+| Hébreu | Translittération | Et non | Pourquoi |
+|---|---|---|---|
+| `הִוא` (Tora) | `hi'` | `hiv` | qeré perpétuel de `הִיא` : le vav ne se prononce pas |
+| `הַהִוא` · `וְהִוא` | `hahi'` · `vehi'` | `hahiv` · `vehiv` | idem, après préfixe |
+| `יִשָּׂשכָר` | `Yissakhar` | `Yissashkhar` | le second `ש` ne se lit pas |
+
+*Arbitré le 2026-11-20, après 76 `hiv` et 6 `Yissashkhar` relevés dans les lectures.*
 
 ---
 
@@ -306,7 +327,11 @@ un résultat final : il faut ensuite reprendre à la main ou par modèle
 - les majuscules de noms propres et d'épithètes (§9),
 - les noms divins préfixés (§7.3, §8) — l'ébauche sort `laihova`, `vaihova`,
 - l'ambiguïté sheva mobile / quiescent dans les cas non tranchés (§3),
-- le mot `אֲדֹנָי` face au Tétragramme (§8).
+- le mot `אֲדֹנָי` face au Tétragramme (§8),
+- le yod suivi d'un vav voyelle (§5) — l'ébauche sort `béyvom`, `haiv`,
+- les mots qui se lisent autrement qu'ils ne s'écrivent (§5.1) — l'ébauche sort
+  `hiv`, `Yissashkhar`.
 
-Ces quatre catégories sont **les seules** à corriger systématiquement ; le
-reste de la sortie mécanique est fiable.
+Ces six catégories sont **les seules** à corriger systématiquement ; le
+reste de la sortie mécanique est fiable. *Les deux dernières ajoutées le
+2026-11-20 : elles avaient traversé les lectures sans être reprises.*
